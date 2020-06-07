@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="3; url=main.html">
+  <title>로딩페이지</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      background: #fff;
+    }
+    .wrap {
+      width: 150px;
+      height: 150px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+    }
+    .ship {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 35px;
+      left: 50px;
+      transform-origin: bottom center;
+      animation: ship 1s linear infinite alternate;
+    }
+    @keyframes ship {
+      from { transform: rotate(10deg)}
+      to { transform: rotate(-10deg)}
+    }
+    .ship img {
+      width: 100%;
+      height: 100%;
+    }
+    .wave {
+      width: 500px;
+      height: 500px;
+      position: absolute;
+      top: 90px;
+      left: -175px;
+    }
+    .wave div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: .5;
+    }
+    .wave1 {
+      background: #00ceff;
+      border-radius: 47%;
+      transform-origin: 50% 50%;
+      animation: wave1 8s .3s linear infinite;
+    }
+    .wave2 {
+      background: #50c2ff;
+      border-radius: 47%;
+      transform-origin: 50% 50%;
+      animation: wave1 9s .6s linear infinite;
+    }
+    .wave3 {
+      background: #1ea4ff;
+      border-radius: 47%;
+      transform-origin: 50% 50%;
+      animation: wave1 10s linear infinite;
+    }
+    @keyframes wave1 {
+      from {}
+      to { transform: rotate(360deg);}
+    }
+  </style>
+<body>
+  <div class="wrap">
+    <div class="ship">
+      <img src="img/boat.png" alt="">
+    </div>
+    <div class="wave">
+      <div class="wave1"></div>
+      <div class="wave2"></div>
+      <div class="wave3"></div>
+    </div>
+  </div>
+</body>
+</html>

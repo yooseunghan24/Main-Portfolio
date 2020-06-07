@@ -1,0 +1,605 @@
+@charset 'utf-8';
+.phone_tablet {
+  display: none;
+}
+html, body {
+  background: url(../img/realmap.png) no-repeat;
+  overflow: hidden;
+}
+.yoo {
+  position: absolute;
+  top: 429px;
+  left: 555px;
+  font-size: 30px;
+  text-align: center;
+  text-shadow: 2px 3px 5px #000;
+  background: linear-gradient(90deg, #ffd700, #ccac00, #6e5d00);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  cursor: default;
+  transition: 1s;
+  animation: textani 3s ease infinite;
+}
+.yoo:hover {
+  transform: scaleX(-1) scaleY(-1);
+}
+@keyframes textani {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+/* 각 맵의 이미지와 위치 */
+.about_map {
+  background: url(../img/aboutme.png) no-repeat;
+  top: 173px;
+  left: 59px;
+  width: 352px;
+  height: 398px;
+}
+.skill_map {
+  background: url(../img/skill.png) no-repeat;
+  width: 574px;
+  height: 334px;
+  top: 116px;
+  left: 698px;
+}
+.works_map {
+  background: url(../img/works.png) no-repeat;
+  width: 361px;
+  height: 587px;
+  top: 221px;
+  left: 1559px;
+}
+.contact_map {
+  background: url(../img/contact.png) no-repeat;
+  width: 574px;
+  height: 336px;
+  top: 611px;
+  left: 759px;
+}
+.minigame_map {
+  background: url(../img/minigame.png) no-repeat;
+  width: 164px;
+  height: 249px;
+  top: 623px;
+  left: 339px;
+}
+/* 각 맵의 텍스트와 로고 */
+.yoo, .common .text {
+  font-family: 'Cinzel'
+}
+.common {
+  position: absolute;
+  cursor: pointer;
+  transition: .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.common:hover {
+  -webkit-filter: brightness(130%);
+  filter: brightness(130%);
+}
+.common:hover .logo {
+  transform: translateY(-10px);
+}
+.common .logo {
+  text-align: center;
+  transition: .3s;
+}
+.common .logo .text {
+  color: #fff;
+  text-shadow: 2px 3px 6px #000;
+  font-size: 40px;
+}
+/* 모달 공통 속성 */
+.close {
+  position: absolute;
+  top: 5px;
+  left: -37px;
+  cursor: pointer;
+  background: url(../img/close.png);
+  width: 32px;
+  height: 32px;
+}
+.compass {
+  position: absolute;
+  bottom: 0;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  z-index: 6;
+}
+.compass img {
+  width: 100%;
+  height: 100%;
+  transform: rotate(120deg);
+}
+.modal_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  transform: scale(0);
+  -ms-transform: scale(0);
+}
+.about_modal_wrap.modal_wrap_open, .works_modal_wrap.modal_wrap_open {
+  transform: scale(1);
+  -ms-transform: scale(1);
+  animation: mwOpen 1s forwards;
+}
+@keyframes mwOpen{
+  100% {background: rgba(0, 0, 0, 0.5);}
+}
+.about_modal_wrap.modal_wrap_close, .works_modal_wrap.modal_wrap_close { 
+  transform: scale(1);
+  animation: mwClose 1s .7s forwards;
+  background: rgba(0, 0, 0, 0.5);
+}
+@keyframes mwClose {
+  99.9% { transform: scale(1);}
+  100% { background: transparent; transform: scale(0);}
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  width: 1024px;
+  height: 800px;
+  background: url(../img/modalback3.png) no-repeat center;
+  z-index: 5;
+  opacity: 0;
+  line-height: 1.5;
+}
+.modal.modalOpen {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: onModal .5s .7s forwards;
+}
+@keyframes onModal {
+  /*from {}*/
+  to { opacity: 1;}
+}
+.contents_text {
+  padding: 75px 70px;
+}
+.real_contents_box {
+  width: 100%;
+  height: 650px;
+  overflow-y: scroll;
+}
+.about_modal_wrap svg, .works_modal_wrap svg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1024px;
+  height: 800px;
+  z-index: 4;
+}
+.about_modal_wrap svg rect, .works_modal_wrap svg rect {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-dasharray: 3648;
+  stroke-dashoffset: 3648;
+}
+.modal_wrap.svgOpen svg rect {
+  animation: drawing .7s forwards;
+}
+@keyframes drawing {
+  0% { stroke-dashoffset: 3648; }
+  90% { stroke-dashoffset: 0; stroke-width: 3px;}
+  100% { stroke-dashoffset: 0; stroke-width: 0;}
+}
+.modal_wrap.svgClose svg rect {
+  animation: erasing .7s forwards;
+}
+@keyframes erasing {
+  0% { stroke-dashoffset: 0; stroke-width: 3px;}
+  90% { stroke-dashoffset: 3648; stroke-width: 3px;}
+  100% { stroke-dashoffset: 3648; stroke-width: 0;}
+}
+.skill_modal_wrap.modal_wrap_open2, .contact_modal_wrap.modal_wrap_open2 {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1);
+  animation: unfolding .7s;
+}
+@keyframes unfolding {
+  0% { width: 0%; transform: scaleY(0.01);}
+  50% { width: 100%; transform: scaleY(0.01);}
+  100% { width: 100%; transform: scaleY(1);}
+}
+.skill_modal_wrap.modal_wrap_close2, .contact_modal_wrap.modal_wrap_close2 {
+  background: rgba(0, 0, 0, 0.5);
+  animation: folding .7s;
+}
+@keyframes folding {
+  0% { width: 100%; transform: scaleY(1);}
+  50% { width: 100%; transform: scaleY(0.01);}
+  99.9% { background: rgba(0, 0, 0, 0.5);}
+  100% { width: 0%; transform: scaleY(0.01); background: transparent;}
+}
+/* about */
+.face_name_wrap {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.face {
+  width: 200px;
+  height: 200px;
+  margin-right: 100px;
+  position: relative;
+}
+.face .pin {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 50px;
+  height: 50px;
+  z-index: 6;
+}
+.face .pin img {
+  width: 100%;
+  cursor: pointer;
+}
+.face > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(20%);
+  box-shadow: 1px 1px 5px #333;
+  transform-origin: 10% 10%;
+}
+.face.swing > img {
+  animation: faceSwing 2s ease-in-out 1s forwards;
+}
+@keyframes faceSwing {
+  20% { transform: rotate(60deg);}
+  40% { transform: rotate(30deg);}
+  60% { transform: rotate(50deg);}
+  80% { transform: rotate(40deg);}
+  100% { transform: rotate(45deg);}
+}
+/* skill */
+.skill_logo_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.skill_logo {
+  width: 20%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skill_logo_wrap p {
+  width: 80%;
+  word-break: keep-all;
+}
+/* contact */
+.contact_contents .real_contents_box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.contact_contents .real_contents_box a {
+  display: block;
+}
+.contact_contents_imgbox {
+  width: 64px;
+  height: 64px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.contact_contents_imgbox img {
+  width: 100%;
+  height: 100%;
+}
+/* minigame */
+.minigame_modal_wrap.modal_wrap_open3 {
+  transform: scale(1);
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+.minigame_modal_wrap.modal_wrap_close3 {
+  transform: scale(1);
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeOut 1s forwards;
+}
+@keyframes fadeOut {
+  0% { opacity: 1;}
+  80% { opacity: 1;}
+  99.9% { transform: scale(1);}
+  100% { opacity: 0; transform: scale(0);}
+}
+.minigame_modal_wrap .modal {
+  background: url('../img/zzz.png') no-repeat;
+}
+.minigame_modal_wrap .modal.minigameOpen {
+  animation: minigame 1s forwards;
+  opacity: 1;
+}
+@keyframes minigame {
+  0% { transform: translate(-50%, -50%) scaleX(0.01);}
+  20% { transform: translate(-50%, -50%) scaleX(0.01);}
+  100% { transform: translate(-50%, -50%) scaleX(1);}
+}
+.minigame_modal_wrap .modal.minigameClose {
+  opacity: 1;
+  animation: minigameoff 1s forwards;
+}
+@keyframes minigameoff {
+  0% { transform: translate(-50%, -50%) scaleX(1);}
+  80% { transform: translate(-50%, -50%) scaleX(0.01);}
+  99.9% { opacity: 1;}
+  100% { transform: translate(-50%, -50%) scaleX(0.01);}
+}
+/* cloud */
+.cloud {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+.cloud img {
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+}
+.cloud1, .cloud2, .cloud3 {
+  width: 200px;
+  height: 200px;
+}
+.cloud4, .cloud5, .cloud6 {
+  width: 1237px;
+  height: 1098px;
+}
+/* shark */
+.shark {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 1500px;
+  top: 150px;
+  overflow: hidden;
+}
+.shark img {
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  transition: 1s;
+}
+.shark:hover img {
+  transform: translateY(0);
+}
+/* ship */
+.ship {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  z-index: 1;
+  top: 500px;
+  left: 150px;
+  animation: ship 120s linear infinite;
+}
+.ship img {
+  width: 100%;
+}
+@keyframes ship {
+  25% { transform: translate(600px, -50px) scaleX(1);}
+  49.9% { transform: translate(1450px, 0) scaleX(1);}
+  50% { transform: translate(1450px, 0) scaleX(-1);}
+  75% { transform: translate(600px, -50px) scaleX(-1);}
+  99.9% {transform: translate(0, 0) scaleX(-1);}
+  100% { transform: translate(0, 0) scaleX(1);}
+}
+.copy {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+/* 데스크탑일때만 스크롤바 변경 */
+@media (min-width: 1024px) { 
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: brown;
+  }
+}
+/* tablet */
+@media (max-width: 1023px) {
+  .desktop { display: none;}
+  html, body, div, span, h1, h2, h3, h4, p, a, address, img,
+  ol, ul, li, footer, header, menu, nav {
+    font-family: '맑은 고딕', 'sasn-serif'!important;
+    font-weight: normal!important;
+  }
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff;
+  }
+  .yoo, .ship, .cloud {
+    display: none;
+  }
+  .phone_tablet {
+    display: block;
+    line-height: 1.5;
+  }
+  section {
+    padding: 30px;
+  }
+  section h2 { display: none;}
+  section > h3 {
+    text-align: center;
+    font-size: 48px;
+    padding: 50px 0;
+  }
+  .alert {
+    padding: 10px;
+    background: #eee;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    font-size: 12px;
+  }
+  .alert span {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 10px;
+    right: 5%;
+    cursor: pointer;
+  }
+  /* m_about */
+  .m_about {
+    position: relative;
+  }
+  .m_about_face_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .m_about_face {
+    width: 100px;
+    height: 100px;
+    margin-right: 50px;
+  }
+  .m_about_face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .m_about_text_wrap {
+    padding: 30px;
+  }
+  .m_about_face_text {
+    padding: 30px;
+  }
+  .scope {
+    position: absolute;
+    right: 0;
+    bottom: 0
+  }
+  .scope img {
+    width: 100%;
+    height: 100%;
+  }
+  /* m_skill */
+  .m_skill_contents_wrap {
+    display: flex;
+    padding: 30px;
+    height: 180px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: 1s;
+  }
+  .m_skill_contents_wrap.upup {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .m_skill_contents_icon {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .m_skill_contents_text {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    word-break: keep-all;
+  }
+  /* m_works */
+  .m_works_contents_wrap {
+    padding: 30px;
+    display: flex;
+    opacity: 0;
+    transition: 1s;
+  }
+  .m_works_contents_wrap:nth-of-type(odd) {
+    transform: translateX(-100%);
+  }
+  .m_works_contents_wrap:nth-of-type(even) {
+    transform: translateX(100%);
+  }
+  .m_works_contents_wrap.sideMove {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .m_works_contents_img {
+    height: 300px;
+    width: 50%;
+  }
+  .m_works_contents_img img {
+    width: 100%;
+    height: 100%;
+  }
+  .m_works_contents_text {
+    width: 50%;
+    padding: 30px;
+  }
+  /* m_contact */
+  .m_contact_contents_wrap {
+    display: flex;
+  }
+  .m_contact_contents_wrap > a {
+    display: block;
+    width: 50%;
+    text-align: center;
+  }
+  .m_contact_contents_imgbox {
+    margin-bottom: 10px;
+  }
+  .m_footer {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .m_footer p {
+    text-align: center;
+    font-size: 30px;
+  }
+  .m_footer p:nth-of-type(2) {
+    font-size: 10px;
+    margin-top: 30px;
+  }
+  .book_pen {
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    transform: scaleX(-1)
+  }
+  .book_pen img {
+    width: 100%;
+    height: 100%;
+  }
+}
+/* phone */
+@media (max-width: 767px) {
+
+}
