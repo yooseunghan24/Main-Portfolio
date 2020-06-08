@@ -461,6 +461,7 @@ html, body {
     left: 0;
     width: 100vw;
     font-size: 12px;
+    z-index: 9999;
   }
   .alert span {
     width: 16px;
@@ -469,6 +470,15 @@ html, body {
     top: 10px;
     right: 5%;
     cursor: pointer;
+  }
+  .top_nightsky {
+    position: absolute;
+    top: -300px;
+    left: 0;
+  }
+  .top_nightsky img {
+    transform: rotate(180deg);
+    display: block;
   }
   /* m_about */
   .m_about {
@@ -493,17 +503,20 @@ html, body {
   .m_about_text_wrap {
     padding: 30px;
   }
+  .m_about_text_wrap p {
+    padding: 0 20px;
+  }
   .m_about_face_text {
     padding: 30px;
   }
   .scope {
     position: absolute;
-    right: 0;
-    bottom: 0
+    right: -10%;
+    bottom: 30%;
   }
   .scope img {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
   }
   /* m_skill */
   .m_skill_contents_wrap {
@@ -537,6 +550,8 @@ html, body {
     display: flex;
     opacity: 0;
     transition: 1s;
+    position: relative;
+    z-index: 1;
   }
   .m_works_contents_wrap:nth-of-type(odd) {
     transform: translateX(-100%);
@@ -561,8 +576,14 @@ html, body {
     padding: 30px;
   }
   /* m_contact */
+  .m_contact h3 {
+    position: relative;
+    z-index: 1;
+  }
   .m_contact_contents_wrap {
     display: flex;
+    position: relative;
+    z-index: 1;
   }
   .m_contact_contents_wrap > a {
     display: block;
@@ -582,24 +603,50 @@ html, body {
   .m_footer p {
     text-align: center;
     font-size: 30px;
+    color: #fff;
+    position: relative;
+    z-index: 10;
   }
   .m_footer p:nth-of-type(2) {
     font-size: 10px;
     margin-top: 30px;
   }
-  .book_pen {
+  .nightsky {
     position: absolute;
-    z-index: -1;
-    right: 0;
     bottom: 0;
-    transform: scaleX(-1)
+    left: 0;
   }
-  .book_pen img {
-    width: 100%;
-    height: 100%;
+  .nightsky img {
+    display: block;
   }
 }
 /* phone */
 @media (max-width: 767px) {
-
+  .scope {
+    right: -25%;
+    bottom: 50%;
+  }
+  .m_skill_contents_icon img {
+    width: 70%;
+    height: 70%;
+  }
+  .m_skill_contents_text {
+    font-size: 12px;
+    padding-left: 10px;
+  }
+  .m_works_contents_wrap {
+    flex-direction: column;
+  }
+  .m_works_contents_img {
+    width: 100%;
+  }
+  .m_works_contents_text {
+    width: 100%;
+    padding: 0;
+    padding-top: 20px;
+    font-size: 12px;
+  }
+  .m_works_contents_wrap:nth-of-type(2) {
+    flex-direction: column-reverse;
+  }
 }
