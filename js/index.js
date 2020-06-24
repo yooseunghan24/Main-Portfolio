@@ -73,12 +73,15 @@ function cloudMove() {
 		cloudX3 -= plus;
 		cloudY3 += plus;
 	}
-	cloud[0].style.transform = `translate(${cloudX}%, ${cloudY}%)`;
-	cloud[1].style.transform = `translate(${cloudX2}%, ${cloudY2}%)`;
-	cloud[2].style.transform = `translate(${cloudX3}%, ${cloudY3}%)`;
-	cloud[3].style.transform = `translate(${cloudX}%, ${cloudY}%)`;
-	cloud[4].style.transform = `translate(${cloudX2}%, ${cloudY2}%)`;
-	cloud[5].style.transform = `translate(${cloudX3}%, ${cloudY3}%)`;
+	let cloudOne = `translate(${cloudX}%, ${cloudY}%)`;
+	let cloudTwo = `translate(${cloudX2}%, ${cloudY2}%)`;
+	let cloudThree = `translate(${cloudX3}%, ${cloudY3}%)`;
+	cloud[0].style.transform = cloudOne;
+	cloud[1].style.transform = cloudTwo;
+	cloud[2].style.transform = cloudThree;
+	cloud[3].style.transform = cloudOne;
+	cloud[4].style.transform = cloudTwo;
+	cloud[5].style.transform = cloudThree;
 }
 setInterval(cloudMove, 1)
 
@@ -87,13 +90,13 @@ $('.about_map, .works_map').click(function() {
 	$(this).next().removeClass('modal_wrap_close svgClose')
 	.addClass('modal_wrap_open svgOpen');
 	$(this).next().find('.modal').addClass('modalOpen');
-	$(this).next().find('.face').addClass('swing');
+	//$(this).next().find('.face').addClass('swing');
 })
 $('.skill_map, .contact_map').click(function() {
 	$(this).next().removeClass('modal_wrap_close2').addClass('modal_wrap_open2');
 	$(this).next().find('.modal').addClass('modalOpen');
 })
-$('.minigame_map').click(() => {
+$('.minigame_map').click(function() {
 	$('.minigame_modal_wrap').removeClass('modal_wrap_close3').addClass('modal_wrap_open3');
 	$('.minigame_modal_wrap').find('.modal').removeClass('minigameClose')
 	.addClass('minigameOpen');
@@ -135,22 +138,46 @@ $('.minigame_modal_wrap .close').click(function() {
 	.addClass('modal_wrap_close3');
 	$('.modal').removeClass('minigameOpen').addClass('minigameClose');
 })
-
+/* works 슬라이드 */
+const worksLbtn = document.querySelector('.works_left_btn');
+const worksRbtn = document.querySelector('.works_right_btn');
+const worksSlide = document.querySelector('.works_slide');
+const worksPage = document.querySelector('.works_page ul');
+let worksSlideSw=0;
+worksLbtn.addEventListener('click', function() {
+	worksSlideSw <= 0 ? worksSlideSw = 0 : worksSlideSw -= 1
+	worksSlide.style.marginLeft = `${-100 * worksSlideSw}%`;
+	worksPage.style.marginLeft = `${-100 * worksSlideSw}%`;
+})
+worksRbtn.addEventListener('click', function() {
+	worksSlideSw >= 3 ? worksSlideSw = 3 : worksSlideSw += 1
+	worksSlide.style.marginLeft = `${-100 * worksSlideSw}%`;
+	worksPage.style.marginLeft = `${-100 * worksSlideSw}%`;
+})
 /* 핀 눌렀을 때 */
-$('.pin').click(() => {
+$('.pin').click(function() {
 	$('.face').removeClass('swing');
 })
 
 /* 모바일용 스크립트 */
-$('.alert span').click(() => {
+$('.alert span').click(function() {
 	$('.alert').hide();
 })
 // 휠 이벤트
+const introP = document.querySelector('.m_intro p');
 const skillWrap = document.querySelectorAll('.m_skill_contents_wrap');
 const worksWrap = document.querySelectorAll('.m_works_contents_wrap');
-window.addEventListener('wheel', () => {
+let pTop = 30;
+window.addEventListener('wheel', function(e) {
 	let scrollY = window.pageYOffset;
-	console.log(scrollY);
+	let deltaY = e.deltaY;
+	if(deltaY > 0) {
+		pTop === 60 ? pTop = 60 : pTop += 10;
+		console.log(pTop);
+	} else {
+		pTop === 30 ? pTop = 30 : pTop -= 10;
+	}
+	introP.style.marginTop = pTop + 'px';
 	for(let i=0; i<skillWrap.length; i++) {
 		if(scrollY > skillWrap[i].offsetTop - 800) {
 			skillWrap[i].classList.add('upup');
@@ -158,14 +185,13 @@ window.addEventListener('wheel', () => {
 	}
 	for(let i=0; i<worksWrap.length; i++) {
 		if(scrollY > worksWrap[i].offsetTop - 800) {
-			worksWrap[i].classList.add('sideMove');
+			worksWrap[i].classList.add('upup');
 		}
 	}
 })
 // 터치 이벤트
-window.addEventListener('touchmove', () => {
+window.addEventListener('touchmove', function() {
 	let mobileScrollY = window.pageYOffset;
-	console.log(mobileScrollY);
 	for(let i=0; i<skillWrap.length; i++) {
 		if(mobileScrollY > skillWrap[i].offsetTop - 800) {
 			skillWrap[i].classList.add('upup');
@@ -173,7 +199,7 @@ window.addEventListener('touchmove', () => {
 	}
 	for(let i=0; i<worksWrap.length; i++) {
 		if(mobileScrollY > worksWrap[i].offsetTop - 800) {
-			worksWrap[i].classList.add('sideMove');
+			worksWrap[i].classList.add('upup');
 		}
 	}
 })
