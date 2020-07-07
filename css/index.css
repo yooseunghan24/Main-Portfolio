@@ -82,7 +82,6 @@ body {
 }
 .common {
   position: absolute;
-  cursor: pointer;
   transition: 0.3s;
   display: flex;
   justify-content: center;
@@ -290,6 +289,9 @@ body {
   }
 }
 /* about */
+.about_modal_wrap .real_contents_box {
+  padding: 0 80px;
+}
 .face_name_wrap {
   width: 100%;
   height: 300px;
@@ -297,34 +299,27 @@ body {
   justify-content: center;
   align-items: center;
 }
-.face {
-  width: 200px;
+.face_name_wrap .face {
+  width: 30%;
   height: 250px;
-  margin-right: 100px;
   position: relative;
+  text-align: center;
 }
-.face .pin {
-  position: absolute;
-  top: 0;
-  left: -10px;
-  width: 50px;
-  height: 50px;
-  z-index: 6;
-}
-.face .pin img {
-  width: 100%;
-  cursor: pointer;
-}
-.face > img {
-  width: 100%;
+.face_name_wrap .face > img {
+  max-width: 100%;
   height: 100%;
   object-fit: cover;
   filter: sepia(20%);
   box-shadow: 1px 1px 5px #333;
-  transform-origin: 10% 10%;
+}
+.face_name_wrap .name {
+  width: 70%;
+  word-break: keep-all;
+  line-height: 2;
+  padding-left: 30px;
 }
 .face_text {
-  padding: 0 100px;
+  padding-top: 30px;
   line-height: 1.8;
 }
 .face.swing > img {
@@ -622,11 +617,10 @@ body {
   width: 40%;
 }
 .game_wrap > div {
-  width: 100%;
+  height: 380px;
 }
 .game_wrap > div img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
   display: block;
 }
 .game_wrap > p {
@@ -775,7 +769,8 @@ body {
     line-height: 1.5;
   }
   section h2 {
-    display: none;
+    text-indent: -9999px;
+    height: 0;
   }
   section > h3 {
     text-align: center;
@@ -855,26 +850,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 30px;
   }
   .m_about_face {
-    width: 100px;
-    height: 125px;
-    margin-right: 50px;
+    width: 30%;
   }
   .m_about_face img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+    display: block;
   }
   .m_about_text_wrap {
-    padding: 30px;
+    padding: 50px 30px 0;
   }
   .m_about_text_wrap p {
-    padding: 0 20px;
     font-size: 20px;
+    word-break: keep-all;
   }
   .m_about_face_text {
+    width: 70%;
     padding: 30px;
     font-size: 20px;
   }
@@ -1004,14 +998,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
   }
   .m_footer p {
     text-align: center;
-    font-size: 30px;
+    font-size: 18px;
     color: #000;
-    position: relative;
-    z-index: 10;
+    word-break: keep-all;;
   }
   .m_footer p:nth-of-type(2) {
     font-size: 10px;
@@ -1034,15 +1026,28 @@ body {
   .m_intro {
     background-size: 48%;
   }
+  .m_about_face_wrap {
+    padding: 0 15px;
+  }
   .m_about_face_text,
   .m_about_text_wrap p {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .m_about_face_text {
+    padding: 0 0 0 15px;
+  }
+  .m_about_text_wrap {
+    padding: 25px 15px 0;
+  }
+  .m_skill_contents_wrap {
+    padding: 15px;
   }
   .m_skill_contents_icon img {
     height: 70%;
   }
   .m_skill_contents_text {
-    font-size: 12px;
+    font-size: 14px;
     padding-left: 10px;
   }
   .m_works_contents_wrap {
@@ -1055,7 +1060,7 @@ body {
     width: 100%;
     padding: 0;
     padding-top: 20px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .m_works_contents_wrap:nth-of-type(2),
   .m_works_contents_wrap:nth-of-type(4) {
