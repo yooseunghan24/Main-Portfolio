@@ -1,23 +1,23 @@
-// 나이
-const age = document.querySelectorAll('.age');
+/* 나이 */
+const age = document.querySelectorAll(".age");
 const date = new Date();
-for(let i=0; i<age.length; i++) {
+for (let i = 0; i < age.length; i++) {
   age[i].textContent = date.getFullYear() - 1996 + 1;
 }
 
-// Random cloud event
+/* 랜덤 구름 이벤트 */
 const cloud = document.querySelectorAll(".cloud");
 // cloud0, 1, 2
 for (let i = 0; i < 3; i++) {
-  let random = Number(Math.random() * 90); // top
-  let random2 = Number(Math.random() * 90); // left
+  let random = +(Math.random() * 90); // top
+  let random2 = +(Math.random() * 90); // left
   cloud[i].style.top = `${random}%`;
   cloud[i].style.left = `${random2}%`;
 }
 // cloud3, 4, 5
 for (let i = 3; i < 6; i++) {
-  let random = Number(Math.random() * -10); // top
-  let random2 = Number(Math.random() * 100); // left
+  let random = +(Math.random() * -10); // top
+  let random2 = +(Math.random() * 100); // left
   cloud[i].style.top = `${random}%`;
   cloud[i].style.left = `${random2}%`;
 }
@@ -31,54 +31,61 @@ let cloudY3 = 0;
 let pl = Math.floor(Math.random() * 4);
 let pl2 = Math.floor(Math.random() * 4);
 let pl3 = Math.floor(Math.random() * 4);
+
 function cloudMove() {
-  if (pl == 0) {
-    cloudX += plus;
-    cloudY += plus;
+  switch (pl) {
+    case 0:
+      cloudX += plus;
+      cloudY += plus;
+      break;
+    case 1:
+      cloudX -= plus;
+      cloudY -= plus;
+      break;
+    case 2:
+      cloudX += plus;
+      cloudY -= plus;
+      break;
+    case 3:
+      cloudX -= plus;
+      cloudY += plus;
+      break;
   }
-  if (pl == 1) {
-    cloudX -= plus;
-    cloudY -= plus;
+  switch (pl2) {
+    case 0:
+      cloudX2 += plus;
+      cloudY2 += plus;
+      break;
+    case 1:
+      cloudX2 -= plus;
+      cloudY2 -= plus;
+      break;
+    case 2:
+      cloudX2 += plus;
+      cloudY2 -= plus;
+      break;
+    case 3:
+      cloudX2 -= plus;
+      cloudY2 += plus;
+      break;
   }
-  if (pl == 2) {
-    cloudX += plus;
-    cloudY -= plus;
-  }
-  if (pl == 3) {
-    cloudX -= plus;
-    cloudY += plus;
-  }
-  if (pl2 == 0) {
-    cloudX2 += plus;
-    cloudY2 += plus;
-  }
-  if (pl2 == 1) {
-    cloudX2 -= plus;
-    cloudY2 -= plus;
-  }
-  if (pl2 == 2) {
-    cloudX2 += plus;
-    cloudY2 -= plus;
-  }
-  if (pl2 == 3) {
-    cloudX2 -= plus;
-    cloudY2 += plus;
-  }
-  if (pl3 == 0) {
-    cloudX3 += plus;
-    cloudY3 += plus;
-  }
-  if (pl3 == 1) {
-    cloudX3 -= plus;
-    cloudY3 -= plus;
-  }
-  if (pl3 == 2) {
-    cloudX3 += plus;
-    cloudY3 -= plus;
-  }
-  if (pl3 == 3) {
-    cloudX3 -= plus;
-    cloudY3 += plus;
+  switch (pl3) {
+    case 0:
+      cloudX3 += plus;
+      cloudY3 += plus;
+      break;
+    case 1:
+      cloudX3 -= plus;
+      cloudY3 -= plus;
+      break;
+    case 2:
+      cloudX3 += plus;
+      cloudY3 -= plus;
+      break;
+    case 3:
+      cloudX3 -= plus;
+      cloudY3 += plus;
+      break;
   }
   let cloudOne = `translate(${cloudX}%, ${cloudY}%)`;
   let cloudTwo = `translate(${cloudX2}%, ${cloudY2}%)`;
@@ -137,6 +144,7 @@ $(".minigame_modal_wrap").click(function (e) {
     $(".modal").removeClass("minigameOpen").addClass("minigameClose");
   }
 });
+
 /* (OFF) X 눌렀을 때 꺼지게 */
 $(".about_modal_wrap .close, .works_modal_wrap .close").click(function () {
   $(".modal_wrap")
@@ -157,6 +165,7 @@ $(".minigame_modal_wrap .close").click(function () {
     .addClass("modal_wrap_close3");
   $(".modal").removeClass("minigameOpen").addClass("minigameClose");
 });
+
 /* works 슬라이드 */
 const worksLbtn = document.querySelector(".works_left_btn");
 const worksRbtn = document.querySelector(".works_right_btn");
@@ -169,19 +178,11 @@ worksLbtn.addEventListener("click", function () {
   worksPage.style.marginLeft = `${-100 * worksSlideSw}%`;
 });
 worksRbtn.addEventListener("click", function () {
-  worksSlideSw >= 4 ? (worksSlideSw = 4) : (worksSlideSw += 1);
+  worksSlideSw >= 3 ? (worksSlideSw = 3) : (worksSlideSw += 1);
   worksSlide.style.marginLeft = `${-100 * worksSlideSw}%`;
   worksPage.style.marginLeft = `${-100 * worksSlideSw}%`;
 });
-/* 핀 눌렀을 때 */
-$(".pin").click(function () {
-  $(".face").removeClass("swing");
-});
 
-/* 모바일용 스크립트 */
-$(".alert span").click(function () {
-  $(".alert").hide();
-});
 // 휠 이벤트
 const introP = document.querySelector(".m_intro p");
 const skillWrap = document.querySelectorAll(".m_skill_contents_wrap");
@@ -210,6 +211,56 @@ window.addEventListener("wheel", function (e) {
   introP.style.marginTop = `${pTop}px`;
   appearance();
 });
+
+/* 미니맵 움직이기 */
+const miniMap = document.querySelector(".minimap_wrap");
+const miniBox = document.querySelector(".minibox");
+let startX, startY, setTop, setLeft;
+function boxMove(e) {
+  this.style.left = setLeft + e.clientX - startX + "px";
+  this.style.top = setTop + e.clientY - startY + "px";
+  if (this.offsetLeft <= 0 && this.offsetTop <= 0) {
+    this.style.left = 0;
+    this.style.top = 0;
+  } else if (this.offsetLeft <= 0) {
+    this.style.left = 0;
+  } else if (this.offsetTop <= 0) {
+    this.style.top = 0;
+  } else if (this.offsetLeft >= 15 && this.offsetTop >= 20) {
+    this.style.left = 15 + "px";
+    this.style.top = 20 + "px";
+  } else if (this.offsetLeft >= 15) {
+    this.style.left = 15 + "px";
+  } else if (this.offsetTop >= 20) {
+    this.style.top = 20 + "px";
+  }
+}
+miniBox.addEventListener(
+  "mousedown",
+  function (e) {
+    setTop = this.offsetTop;
+    setLeft = this.offsetLeft;
+    startX = e.clientX;
+    startY = e.clientY;
+    this.addEventListener("mousemove", boxMove, false);
+    window.addEventListener(
+      "mouseup",
+      function () {
+        miniBox.removeEventListener("mousemove", boxMove);
+      },
+      false
+    );
+  },
+  false
+);
+
+/* 모바일용 스크립트 */
+
+// 상단 메시지
+$(".alert a").click(function () {
+  $(".alert").hide();
+});
+
 // 터치 이벤트
 window.addEventListener("touchmove", function () {
   let scrollY = window.scrollY;

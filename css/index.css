@@ -9,6 +9,30 @@ body {
   background: url(../img/realmap.jpg) no-repeat;
   overflow: hidden;
   cursor: url(../img/cursor.png), auto;
+  user-select: none;
+}
+.alert {
+  padding: 10px;
+  background: #eee;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  font-size: 12px;
+  z-index: 9999;
+}
+.alert p {
+  font-family: "Malgun Gothic", sans-serif;
+}
+.alert a {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 10px;
+  right: 5%;
+  cursor: pointer;
+  transform: scale(1.2);
 }
 .yoo {
   position: absolute;
@@ -75,7 +99,7 @@ body {
   top: 623px;
   left: 339px;
 }
-/* 각 맵의 텍스트와 로고 */
+/* 각 맵의 이름과 로고 */
 .yoo,
 .common .text {
   font-family: "Cinzel";
@@ -111,7 +135,7 @@ body {
   background: url(../img/close.png);
   width: 32px;
   height: 32px;
-  transition:.3s;
+  transition: 0.3s;
 }
 .close:hover {
   background: url(../img/close_hover.png);
@@ -380,7 +404,7 @@ body {
 }
 .works_slide {
   display: flex;
-  width: 500%;
+  width: 400%;
   transition: 0.3s;
 }
 .works_slide_arrow {
@@ -394,7 +418,7 @@ body {
   position: absolute;
   width: 40px;
   height: 23px;
-  transition: .3s;
+  transition: 0.3s;
 }
 .works_left_btn {
   left: 0;
@@ -405,8 +429,9 @@ body {
   right: -10px;
   background: url(../img/arrow.png) no-repeat;
 }
-.works_left_btn:hover, .works_right_btn:hover {
-  background: url(../img/arrow_hover.png)
+.works_left_btn:hover,
+.works_right_btn:hover {
+  background: url(../img/arrow_hover.png);
 }
 .works_page {
   position: absolute;
@@ -423,7 +448,7 @@ body {
 }
 .works_page ul {
   display: flex;
-  width: 125px;
+  width: 100px;
   transition: 0.3s;
 }
 .works_page ul li {
@@ -436,7 +461,7 @@ body {
   width: 31px;
 }
 .works_common {
-  width: 20%;
+  width: 25%;
   height: 650px;
   display: flex;
   justify-content: space-evenly;
@@ -463,9 +488,6 @@ body {
   position: relative;
   top: 20px;
 }
-.works_text > a:hover {
-  box-shadow: inset 0 0 10px 1px #000;
-}
 .siteview,
 .codeview {
   display: inline-block;
@@ -482,7 +504,10 @@ body {
   position: absolute;
   bottom: 0;
   z-index: 7;
-  transition: .2s;
+  transition: 0.5s;
+}
+.works_text > a:hover {
+  box-shadow: 0 0 10px 1px #000;
 }
 .siteview {
   left: 0;
@@ -515,13 +540,13 @@ body {
 .contact_contents .real_contents_box > p {
   position: absolute;
   left: 50%;
-  top:100px;
+  top: 100px;
   transform: translateX(-50%);
 }
 .contact_contents .real_contents_box a {
   display: block;
   padding: 20px;
-  transition: .4s;
+  transition: 0.4s;
 }
 .contact_contents .real_contents_box a:hover {
   box-shadow: 0 0 3px 2px #000;
@@ -631,7 +656,7 @@ body {
   padding: 5px;
   border: 1px solid #000;
   border-radius: 10px;
-  transition: .3s;
+  transition: 0.3s;
 }
 .game_wrap > a:hover {
   background: #000;
@@ -716,8 +741,31 @@ body {
   bottom: 5px;
   left: 5px;
 }
+/* 미니맵 */
+.minimap_wrap {
+  width: 180px;
+  height: 110px;
+  position: absolute;
+  bottom: 70px;
+  right: 100px;
+  background: url(../img/minimap.png);
+  box-shadow: 0 0 3px 2px #000;
+}
+.minibox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 165px;
+  height: 90px;
+  background: #ffca6e;
+  cursor: grab;
+  opacity: 0.3;
+}
+/* 1024px 이상일 때만 스크롤바 변경 */
 @media (min-width: 1024px) {
-  * {cursor: url(../img/cursor.png), auto;}
+  * {
+    cursor: url(../img/cursor.png), auto;
+  }
   ::-webkit-scrollbar {
     width: 3px;
   }
@@ -797,7 +845,7 @@ body {
     right: 5%;
     cursor: pointer;
   }
-  /* intro */
+  /* m_intro */
   .m_intro {
     position: relative;
     height: 100vh;
@@ -993,6 +1041,7 @@ body {
   .m_contact_contents_imgbox {
     margin-bottom: 10px;
   }
+  /* m_footer */
   .m_footer {
     height: 150px;
     display: flex;
@@ -1003,7 +1052,7 @@ body {
     text-align: center;
     font-size: 18px;
     color: #000;
-    word-break: keep-all;;
+    word-break: keep-all;
   }
   .m_footer p:nth-of-type(2) {
     font-size: 10px;
@@ -1023,9 +1072,11 @@ body {
   section > h3 {
     font-size: 48px;
   }
+  /* m_intro */
   .m_intro {
     background-size: 48%;
   }
+  /* m_about */
   .m_about_face_wrap {
     padding: 0 15px;
   }
@@ -1038,8 +1089,9 @@ body {
     padding: 0 0 0 15px;
   }
   .m_about_text_wrap {
-    padding: 25px 15px 0;
+    padding: 50px 15px 0;
   }
+  /* m_skill */
   .m_skill_contents_wrap {
     padding: 15px;
   }
@@ -1050,6 +1102,7 @@ body {
     font-size: 14px;
     padding-left: 10px;
   }
+  /* m_works */
   .m_works_contents_wrap {
     flex-direction: column;
   }
