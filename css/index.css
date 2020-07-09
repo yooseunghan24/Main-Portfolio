@@ -722,6 +722,20 @@ body {
   left: 150px;
   animation: ship 120s linear infinite;
 }
+.ship:hover::after {
+  content: "저와 함께 항해할 분을 찾습니다.";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 170px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid;
+  padding: 5px;
+}
+.ship.balloon::after {
+  display: block;
+}
 .ship img {
   width: 100%;
 }
@@ -755,7 +769,7 @@ body {
   width: 180px;
   height: 110px;
   position: absolute;
-  bottom: 170px;
+  bottom: 100px;
   right: 100px;
   background: url(../img/minimap.png);
   box-shadow: 0 0 3px 2px #000;
