@@ -6,10 +6,19 @@
 }
 html,
 body {
-  background: url(../img/realmap.jpg) no-repeat;
+  /*background: url(../img/realmap.jpg) no-repeat;*/
   overflow: hidden;
   cursor: url(../img/cursor.png), auto;
   user-select: none;
+  height: 100%;
+}
+.desktop {
+  position: absolute;
+  top: -55px;
+  left: 0;
+  background: url(../img/realmap.jpg) no-repeat;
+  width: 1920px;
+  height: 1080px;
 }
 .alert {
   padding: 10px;
@@ -746,7 +755,7 @@ body {
   width: 180px;
   height: 110px;
   position: absolute;
-  bottom: 70px;
+  bottom: 170px;
   right: 100px;
   background: url(../img/minimap.png);
   box-shadow: 0 0 3px 2px #000;
@@ -755,7 +764,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 165px;
+  width: 180px;
   height: 90px;
   background: #ffca6e;
   cursor: grab;

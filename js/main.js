@@ -215,44 +215,45 @@ window.addEventListener("wheel", function (e) {
 /* 미니맵 움직이기 */
 const miniMap = document.querySelector(".minimap_wrap");
 const miniBox = document.querySelector(".minibox");
+const bigMap = document.querySelector(".desktop");
 let startX, startY, setTop, setLeft;
 function boxMove(e) {
   this.style.left = setLeft + e.clientX - startX + "px";
   this.style.top = setTop + e.clientY - startY + "px";
+  bigMap.style.transform = `translate(${-this.offsetLeft}px,${-this
+    .offsetTop}px)`;
   if (this.offsetLeft <= 0 && this.offsetTop <= 0) {
     this.style.left = 0;
     this.style.top = 0;
-  } else if (this.offsetLeft <= 0) {
+  }
+  if (this.offsetLeft <= 0) {
     this.style.left = 0;
-  } else if (this.offsetTop <= 0) {
+  }
+  if (this.offsetTop <= 0) {
     this.style.top = 0;
-  } else if (this.offsetLeft >= 15 && this.offsetTop >= 20) {
-    this.style.left = 15 + "px";
+  }
+  if (this.offsetLeft >= 0 && this.offsetTop >= 20) {
+    this.style.left = 0;
     this.style.top = 20 + "px";
-  } else if (this.offsetLeft >= 15) {
-    this.style.left = 15 + "px";
-  } else if (this.offsetTop >= 20) {
+  }
+  if (this.offsetLeft >= 0) {
+    this.style.left = 0;
+  }
+  if (this.offsetTop >= 20) {
     this.style.top = 20 + "px";
   }
 }
-miniBox.addEventListener(
-  "mousedown",
-  function (e) {
-    setTop = this.offsetTop;
-    setLeft = this.offsetLeft;
-    startX = e.clientX;
-    startY = e.clientY;
-    this.addEventListener("mousemove", boxMove, false);
-    window.addEventListener(
-      "mouseup",
-      function () {
-        miniBox.removeEventListener("mousemove", boxMove);
-      },
-      false
-    );
-  },
-  false
-);
+miniBox.addEventListener("mousedown", function (e) {
+  setTop = this.offsetTop;
+  setLeft = this.offsetLeft;
+  startX = e.clientX;
+  startY = e.clientY;
+  this.addEventListener("mousemove", boxMove);
+  window.addEventListener("mouseup", function () {
+    miniBox.removeEventListener("mousemove", boxMove);
+    bigMap.style.transform = "translate(0,0)";
+  });
+});
 
 /* 모바일용 스크립트 */
 
