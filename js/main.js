@@ -185,7 +185,7 @@ worksLbtn.addEventListener("click", () => {
   worksPage.style.marginLeft = `${-100 * worksSlideSw}%`;
 });
 worksRbtn.addEventListener("click", () => {
-  worksSlideSw >= 4 ? (worksSlideSw = 4) : (worksSlideSw += 1);
+  worksSlideSw >= 5 ? (worksSlideSw = 5) : (worksSlideSw += 1);
   worksSlide.style.marginLeft = `${-100 * worksSlideSw}%`;
   worksPage.style.marginLeft = `${-100 * worksSlideSw}%`;
 });
