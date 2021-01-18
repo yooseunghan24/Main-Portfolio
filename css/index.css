@@ -411,7 +411,7 @@ body {
 }
 .works_slide {
   display: flex;
-  width: 600%;
+  width: 700%;
   transition: 0.3s;
 }
 .works_slide_arrow {
@@ -456,7 +456,7 @@ body {
 }
 .works_page ul {
   display: flex;
-  width: 150px;
+  width: 175px;
   transition: 0.3s;
 }
 .works_page ul li {
